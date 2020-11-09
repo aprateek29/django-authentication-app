@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Application definition
 
@@ -139,6 +141,9 @@ SOCIALACCOUNT_PROVIDERS = {
           'profile',
           'email'  
         ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
         'APP': {
             'client_id': '612057904626-5hqvb0femnv2r1j874pcnlc7uv34mtn6.apps.googleusercontent.com',
             'secret': '_7wevL92Pk458EWigXYZ26iH',
@@ -146,5 +151,25 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+# The default behaviour is to redirect authenticated users to LOGIN_REDIRECT_URL when they try accessing login/signup pages.
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True 
+
+# Specifies the login
+# method to use – whether the user logs in by entering their username, e-mail address, or either one of both.
+# Setting this to “email” requires ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_AUTHENTICATION_METHOD = 'email' 
 ACCOUNT_EMAIL_REQUIRED = True
+
+# The URL to redirect to after a successful e-mail confirmation, in case no user is logged in.
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = settings.LOGIN_URL
+
+# Determines the e-mail verification method during signup –
+# choose one of "mandatory", "optional", or "none".
 ACCOUNT_EMAIL_VERIFICATION='mandatory'
+
+
+
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
